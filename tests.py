@@ -51,6 +51,12 @@ class TestBooksCollector:
         collector.set_book_genre('NonExistingBook', 'Ужасы')
         assert collector.get_book_genre('NonExistingBook') is None
 
+    # тест для получения жанра книги по её названию
+    def test_get_book_genre(self,collector):
+        collector.add_new_book('Book1')
+        collector.set_book_genre('Book1','Ужасы')
+        assert collector.get_book_genre('Book1') == 'Ужасы'
+
     # тест получения жанра книги без установленного жанра
     def test_get_book_genre_no_genre_set(self, collector):
         collector.add_new_book('Book1')
