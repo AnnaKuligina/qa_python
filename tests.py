@@ -62,6 +62,17 @@ class TestBooksCollector:
         collector.add_new_book('Book1')
         assert collector.get_book_genre('Book1') == ''
 
+    # тест вывода списка книг с определённым жанром
+    def test_get_books_with_specific_genre_valid_genre(self, collector):
+        collector.add_new_book('Book1')
+        collector.set_book_genre('Book1', 'Ужасы')
+        collector.add_new_book('Book3')
+        collector.set_book_genre('Book3', 'Ужасы')
+        books = collector.get_books_with_specific_genre('Ужасы')
+        assert 'Book1' in books
+        assert 'Book3' in books
+        assert len(books) == 2
+
     # тест передачи не верного жанра, которого нет в коллекции
     def test_get_books_with_specific_genre_invalid_genre(self, collector):
         collector.add_new_book('Book1')
